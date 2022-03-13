@@ -7,8 +7,9 @@ import { Offers } from './pages/Offers'
 import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
 import { Profile } from "./pages/Profile"
-import { Navbar } from "./cmps/Navbar"
 import { PrivateRoute } from "./pages/PrivateRoute"
+import { Category } from "./pages/Category"
+import { Navbar } from "./cmps/Navbar"
 
 
 export const RootCmp = () => {
@@ -19,6 +20,7 @@ export const RootCmp = () => {
                 <Routes>
                     <Route path="/" element={<Explore />} />
                     <Route path="/offers" element={<Offers />} />
+                    <Route path="/category/:categoryName" element={<Category />} />
                     <Route path="/signin" element={<Signin />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/profile" element={<PrivateRoute />}>

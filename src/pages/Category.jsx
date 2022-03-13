@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import { collection, getDocs, query, where, orderBy, limit, startAfter } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 import { Spinner } from '../cmps/Spinner'
 import { ListingPreview } from '../cmps/ListingPreview'
 
-export const Offers = () => {
+export const Category = () => {
 
     const [listings, setListings] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const { categoryName } = useParams()
 
     useEffect(() => {
         (async () => {
@@ -17,8 +19,8 @@ export const Offers = () => {
                 const listingsRef = collection(db, 'listings')
 
                 const q = query(listingsRef,
-                    where('offer', '==', true),
-                    // orderBy('timestamp', 'desc'),
+                    where('type', '==', categoryName),
+                    orderBy('timestamp', 'desc'),
                     limit(10)
                 )
                 const querySnap = await getDocs(q)
@@ -35,14 +37,13 @@ export const Offers = () => {
                 toast.error('Could not get listings')
             }
         })();
-    }, [])
-
+    }, [categoryName])
 
     return (
         <div className="category">
             <header>
                 <p className="pageHeader">
-                    Offers
+                    Places for {categoryName === 'rent' ? 'rent' : 'sale'}
                 </p>
             </header>
             {loading ? <Spinner /> : listings && listings.length > 0 ?
@@ -56,7 +57,7 @@ export const Offers = () => {
                     </ul>
                 </main>
                 :
-                <p>There are no offers avialable</p>
+                <p>No listings for {categoryName}</p>
             }
         </div>
     )
