@@ -36,10 +36,7 @@ export const Signin = () => {
             const userCredentials = await signInWithEmailAndPassword(
                 auth, email, password
             )
-            if (userCredentials.user) {
-                navigate('/')
-
-            }
+            if (userCredentials.user) navigate('/')
         } catch (err) {
             console.log(err);
         }
@@ -63,6 +60,7 @@ export const Signin = () => {
                     />
 
                     <div className="passwordInputDiv">
+
                         <input type={showPassword ? "text" : "password"}
                             className="passwordInput"
                             id="password"
@@ -72,10 +70,12 @@ export const Signin = () => {
                             placeholder="Password"
                             onBlur={() => setShowPassword(false)}
                         />
+
                         <img src={visibilityIcon} alt="show password"
                             className="showPassword"
                             onClick={onShowPassword}
                         />
+
                     </div>
                     <Link to="/forgot-password" className="forgotPasswordLink">
                         Forgot Password
