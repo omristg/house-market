@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { ReactComponent as KeyboardArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
@@ -38,7 +39,7 @@ export const Signin = () => {
             )
             if (userCredentials.user) navigate('/')
         } catch (err) {
-            console.log(err);
+            toast.error('Invalid username or password')
         }
     }
 

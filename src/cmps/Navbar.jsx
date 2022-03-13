@@ -27,9 +27,9 @@ export const Navbar = () => {
                         <p className={pathMatchRoute('/offers') ? 'nav-item-active' : 'nav-item'}>Offers</p>
                     </li>
                     <li>
-                        <PersonOutlineIcon fill={pathMatchRoute('/signin') ? "#2c2c2c" : "#8c8c8c"} width="36px" height="36px"
-                            onClick={() => navigate('/signin')} />
-                        <p className={pathMatchRoute('/signin') ? 'nav-item-active' : 'nav-item'}>Profile</p>
+                        <PersonOutlineIcon fill={pathMatchRoute('/profile') ? "#2c2c2c" : "#8c8c8c"} width="36px" height="36px"
+                            onClick={() => navigate('/profile')} />
+                        <p className={pathMatchRoute('/profile') ? 'nav-item-active' : 'nav-item'}>Profile</p>
                     </li>
                 </ul>
             </nav >
