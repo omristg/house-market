@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
-import { ReactComponent as BadgeIcon } from "../assets/svg/badgeIcon.svg"
+import { ReactComponent as LocalOfferIcon } from "../assets/svg/localOfferIcon.svg"
 import { ReactComponent as ExploreIcon } from "../assets/svg/exploreIcon.svg"
 import { ReactComponent as PersonOutlineIcon } from "../assets/svg/personOutlineIcon.svg"
 export const Navbar = () => {
@@ -22,7 +22,7 @@ export const Navbar = () => {
                         <p className={pathMatchRoute('/') ? 'nav-item-active' : 'nav-item'}>Explore</p>
                     </li>
                     <li>
-                        <BadgeIcon fill={pathMatchRoute('/offers') ? "#2c2c2c" : "#8c8c8c"} width="36px" height="36px"
+                        <LocalOfferIcon fill={pathMatchRoute('/offers') ? "#2c2c2c" : "#8c8c8c"} width="36px" height="36px"
                             onClick={() => navigate('/offers')} />
                         <p className={pathMatchRoute('/offers') ? 'nav-item-active' : 'nav-item'}>Offers</p>
                     </li>
