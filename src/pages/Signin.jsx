@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { ReactComponent as KeyboardArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import { OAuth } from '../cmps/OAuth'
 
 export const Signin = () => {
 
@@ -76,20 +77,21 @@ export const Signin = () => {
                             className="showPassword"
                             onClick={onShowPassword}
                         />
-
-                    </div>
-                    <Link to="/forgot-password" className="forgotPasswordLink">
-                        Forgot Password
-                    </Link>
-                    <div className="signInBar">
-                        <p className="SignInText">
-                            Sign In
-                        </p>
-                        <button className="signInButton">
-                            <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
-                        </button>
                     </div>
                 </form>
+
+                <OAuth />
+                <Link to="/forgot-password" className="forgotPasswordLink">
+                    Forgot Password
+                </Link>
+                <div className="signInBar">
+                    <p className="SignInText">
+                        Sign In
+                    </p>
+                    <button className="signInButton">
+                        <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
+                    </button>
+                </div>
                 <Link to="/signup" className="registerLink">Sign Up Instead</Link>
             </div>
         </>

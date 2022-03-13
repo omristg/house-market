@@ -6,6 +6,8 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import { ReactComponent as KeyboardArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import { OAuth } from '../cmps/OAuth'
+
 
 export const Signup = () => {
 
@@ -94,18 +96,20 @@ export const Signup = () => {
                             onClick={onShowPassword}
                         />
                     </div>
-                    <Link to="/forgot-password" className="forgotPasswordLink">
-                        Forgot Password
-                    </Link>
-                    <div className="signUpBar">
-                        <p className="SignUpText">
-                            Sign Up
-                        </p>
-                        <button className="signUpButton">
-                            <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
-                        </button>
-                    </div>
                 </form>
+
+                <OAuth />
+                <Link to="/forgot-password" className="forgotPasswordLink">
+                    Forgot Password
+                </Link>
+                <div className="signUpBar">
+                    <p className="SignUpText">
+                        Sign Up
+                    </p>
+                    <button className="signUpButton">
+                        <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
+                    </button>
+                </div>
                 <Link to="/signin" className="registerLink">Sign In Instead</Link>
             </div>
         </>
