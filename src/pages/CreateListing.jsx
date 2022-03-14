@@ -99,7 +99,7 @@ export const CreateListing = () => {
         const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
         setProgress(false)
         toast.success('Listing saved')
-        // navigate('')
+        navigate(`/category/${formDataCopy.type}/${docRef.id}`)
     }
 
     const storeImage = async (image) => {
@@ -398,7 +398,7 @@ export const CreateListing = () => {
                         max='6'
                         accept='.jpg,.png,.jpeg'
                         multiple
-                    required
+                        required
                     />
                     <button type='submit' className='primaryButton createListingButton'>
                         Create Listing
