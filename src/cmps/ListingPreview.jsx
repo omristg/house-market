@@ -2,20 +2,13 @@ import { Link } from "react-router-dom"
 import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg'
 import bedIcon from '../assets/svg/bedIcon.svg'
 import bathtubIcon from '../assets/svg/bathtubIcon.svg'
+import { listingService } from "../services/listing.service"
 
 export const ListingPreview = ({ listing, id, onRemove }) => {
 
     const { name, location, imgUrls, type, offer, regularPrice,
         discountedPrice, bedrooms, bathrooms } = listing
 
-    const formatPrice = (price) => {
-        const options = { style: 'currency', currency: 'USD' }
-        const formattedPrice = new Intl.NumberFormat('en-US', options).format(price)
-        return formattedPrice
-    }
-
-    
-    
     return (
         <li className="categoryListing">
             <Link to={`/category/${type}/${id}`}
@@ -27,9 +20,9 @@ export const ListingPreview = ({ listing, id, onRemove }) => {
                     <p className="categoryListingName">{name}</p>
                     <p className="categoryListingPrice">
                         {offer ?
-                            formatPrice(discountedPrice)
+                            listingService.formattedPrice(discountedPrice)
                             :
-                            formatPrice(regularPrice)
+                            listingService.formattedPrice(regularPrice)
                         }
                         {type === 'rent' && ' / Month'}
                     </p>
@@ -47,11 +40,11 @@ export const ListingPreview = ({ listing, id, onRemove }) => {
             </Link>
 
             {onRemove &&
-                <DeleteIcon 
-                className="removeIcon"
-                fill="red"
-                onClick={()=>onRemove(id, listing.namr)}
-                 />
+                <DeleteIcon
+                    className="removeIcon"
+                    fill="red"
+                    onClick={() => onRemove(id, listing.name)}
+                />
             }
         </li>
     )
