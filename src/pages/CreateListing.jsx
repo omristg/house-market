@@ -7,12 +7,15 @@ import { db } from '../firebase.config'
 import { v4 as uuid } from 'uuid'
 import { toast } from "react-toastify"
 import { Spinner } from '../cmps/Spinner'
+import { ProgressBar } from "../cmps/ProgressBar"
 
 export const CreateListing = () => {
 
     const API_KEY = process.env.REACT_APP_GEOCODE_API_KEY
+
+    const [progress, setProgress] = useState(false)
     const [loading, setLoading] = useState(true)
-    const [geolocationEnabled, setGeolocationEnabled] = useState(true)
+    const geolocationEnabled = true
     const [formData, setFormData] = useState({
         type: 'rent',
         name: '',
@@ -28,6 +31,7 @@ export const CreateListing = () => {
         latitude: 0,
         longitude: 0
     })
+
 
     const { type, name, bedrooms, bathrooms, parking, furnished, address,
         offer, regularPrice, discountedPrice, images, latitude, longitude } = formData
@@ -50,13 +54,13 @@ export const CreateListing = () => {
         return () => {
             isMounted.current = false
         }
+        // eslint-disable-next-line
     }, [isMounted])
 
 
 
     const onSubmit = async (ev) => {
         ev.preventDefault()
-        setLoading(true)
 
         if (discountedPrice >= regularPrice) {
             setLoading(false)
@@ -93,7 +97,7 @@ export const CreateListing = () => {
         !formDataCopy.offer && delete formDataCopy.discountedPrice
 
         const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
-        setLoading(false)
+        setProgress(false)
         toast.success('Listing saved')
         // navigate('')
     }
@@ -110,19 +114,9 @@ export const CreateListing = () => {
             uploadTask.on(
                 'state_changed',
                 (snapshot) => {
-                    const progress =
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    // console.log('Upload is ' + progress + '% done')
-                    switch (snapshot.state) {
-                        case 'paused':
-                            // console.log('Upload is paused')
-                            break
-                        case 'running':
-                            // console.log('Upload is running')
-                            break
-                        default:
-                            break
-                    }
+                    // eslint-disable-next-line
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    setProgress(progress)
                 },
                 (error) => {
                     reject(error)
@@ -404,12 +398,15 @@ export const CreateListing = () => {
                         max='6'
                         accept='.jpg,.png,.jpeg'
                         multiple
-                    // required
+                    required
                     />
                     <button type='submit' className='primaryButton createListingButton'>
                         Create Listing
                     </button>
                 </form>
+                {progress !== false && (
+                    <ProgressBar percentage={progress} />
+                )}
             </main>
         </div>
     )
