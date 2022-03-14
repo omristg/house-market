@@ -96,20 +96,21 @@ export const Signup = () => {
                             onClick={onShowPassword}
                         />
                     </div>
+                    <Link to="/forgot-password" className="forgotPasswordLink">
+                        Forgot Password
+                    </Link>
+                    <div className="signUpBar">
+                        <p className="SignUpText">
+                            Sign Up
+                        </p>
+                        <button className="signUpButton">
+                            <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
+                        </button>
+                    </div>
                 </form>
 
                 <OAuth />
-                <Link to="/forgot-password" className="forgotPasswordLink">
-                    Forgot Password
-                </Link>
-                <div className="signUpBar">
-                    <p className="SignUpText">
-                        Sign Up
-                    </p>
-                    <button className="signUpButton">
-                        <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
-                    </button>
-                </div>
+
                 <Link to="/signin" className="registerLink">Sign In Instead</Link>
             </div>
         </>

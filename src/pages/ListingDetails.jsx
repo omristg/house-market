@@ -13,6 +13,7 @@ export const ListingDetails = () => {
     const [loading, setLoading] = useState(true)
     const [shareLinkCopied, setShareLinkCopied] = useState(null)
 
+    // eslint-disable-next-line
     const navigate = useNavigate()
     const { listingId } = useParams()
     const auth = getAuth()

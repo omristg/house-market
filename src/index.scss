@@ -11,7 +11,6 @@ body {
 	font-family: "Montserrat", sans-serif;
 	background-color: #f2f4f8;
 	margin: 0;
-	box-sizing: border-box;
 }
 
 a {
@@ -265,7 +264,7 @@ button {
 }
 
 .socialLogin {
-	margin-top: 4rem;
+	// margin-top: 4rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
