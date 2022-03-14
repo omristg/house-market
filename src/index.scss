@@ -790,10 +790,10 @@ button {
 	opacity: 0.75;
 }
 
-.formInputFile {
+input[type="file"] {
 	width: 100%;
 }
-.formInputFile::-webkit-file-upload-button {
+input[type="file"]::-webkit-file-upload-button {
 	background-color: #00cc66;
 	border: none;
 	color: #ffffff;
@@ -801,6 +801,7 @@ button {
 	padding: 0.5rem 0.75rem;
 	border-radius: 1rem;
 	margin-right: 1rem;
+	cursor: pointer;
 }
 
 .createListingButton {
@@ -819,4 +820,35 @@ button {
 	margin-left: 1rem;
 	font-size: 0.8rem;
 	opacity: 0.75;
+}
+
+.progress-bar {
+	.backgroud {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+		height: 40px;
+		box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+		z-index: 5000;
+		background-color: #f2f4f8;
+		border-radius: 20px;
+	}
+
+	.progress {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 40px;
+		background-color: #00cc66;
+		transition: all 2s ease-in-out;
+		border-top-left-radius: 20px;
+		border-bottom-left-radius: 20px;
+		padding: 0 1rem;
+
+		&[data-finished="true"] {
+			border-radius: 20px;
+		}
+	}
 }

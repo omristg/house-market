@@ -5,7 +5,7 @@ import bathtubIcon from '../assets/svg/bathtubIcon.svg'
 
 export const ListingPreview = ({ listing, id, onRemove }) => {
 
-    const { name, location, imageUrls, type, offer, regularPrice,
+    const { name, location, imgUrls, type, offer, regularPrice,
         discountedPrice, bedrooms, bathrooms } = listing
 
     const formatPrice = (price) => {
@@ -14,12 +14,14 @@ export const ListingPreview = ({ listing, id, onRemove }) => {
         return formattedPrice
     }
 
+    
+    
     return (
         <li className="categoryListing">
             <Link to={`/category/${type}/${id}`}
                 className="categoryListingLink"
             >
-                <img src={imageUrls[0]} alt={name} className="categoryListingImg" />
+                <img src={imgUrls[0]} alt={name} className="categoryListingImg" />
                 <div className="categoryListingDetails">
                     <p className="categoryListingLocation">{location}</p>
                     <p className="categoryListingName">{name}</p>
