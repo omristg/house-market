@@ -23,6 +23,9 @@ export const CreateListing = () => {
         longitude: 0
     })
 
+    const { type, name, bedrooms, bathrooms, parking, furnished, address,
+        offer, regularPrice, discountedPrice, images, latitude, longitude } = formData
+
     const auth = getAuth()
     const navigate = useNavigate()
     const isMounted = useRef(true)
