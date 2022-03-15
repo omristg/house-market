@@ -8,6 +8,7 @@ export const Contact = () => {
 
     const [landlord, setLandlord] = useState(null)
     const [message, setMessage] = useState('')
+    // eslint-disable-next-line
     const [searchParams, setSearchParams] = useSearchParams()
 
     const { landlordId } = useParams()
@@ -20,10 +21,6 @@ export const Contact = () => {
             else toast.error('Could not get landlord')
         })();
     }, [landlordId])
-
-    const handleChange = ({ target: { value } }) => {
-        setMessage(value)
-    }
 
     return (
         <div className="pageContainer">
