@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
-import { db } from '../firebase.config'
 import { Spinner } from '../cmps/Spinner'
 import shareIcon from '../assets/svg/shareIcon.svg'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
@@ -13,6 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css';
 import { listingService } from '../services/listing.service'
+import { toast } from 'react-toastify'
 
 const mapAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 const mapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -30,11 +29,13 @@ export const ListingDetails = () => {
 
     useEffect(() => {
         (async () => {
-            const docRef = doc(db, 'listings', listingId)
-            const docSnap = await getDoc(docRef)
-            if (docSnap.exists()) {
-                setListing(docSnap.data())
+            try {
+                const listing = await listingService.getbyid(listingId)
+                setListing(listing)
                 setLoading(false)
+            } catch (error) {
+                console.log(error);
+                toast.error('Could not get listing')
             }
         })();
     }, [listingId])
