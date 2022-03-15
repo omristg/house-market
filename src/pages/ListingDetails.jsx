@@ -85,7 +85,7 @@ export const ListingDetails = () => {
 
                 {auth.currentUser?.uid !== userRef && (
                     <Link className='primaryButton'
-                        to={`contact/${userRef}?listingName=${name}&listingLocation=${location}`}
+                        to={`/contact/${userRef}?listingName=${name}`}
                     >
                         Contact landlord
                     </Link>
