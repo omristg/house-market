@@ -1,6 +1,21 @@
+import { doc, getDocs } from 'firebase/firestore'
+import { db } from '../firebase.config'
 
 export const listingService = {
     formattedPrice,
+    query
+}
+
+async function query(query) {
+    const querySnap = await getDocs(query)
+    const listings = []
+    querySnap.forEach(doc => {
+        listings.push({
+            id: doc.id,
+            ...doc.data()
+        })
+    })
+    return listings
 }
 
 function formattedPrice(price) {

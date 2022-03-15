@@ -6,6 +6,12 @@ import { db } from '../firebase.config'
 import { Spinner } from '../cmps/Spinner'
 import shareIcon from '../assets/svg/shareIcon.svg'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css';
 import { listingService } from '../services/listing.service'
 
 const mapAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -43,19 +49,36 @@ export const ListingDetails = () => {
 
     if (loading) return <Spinner />
 
-    const { name, location, type, offer, regularPrice, geolocation,
+    const { name, location, type, offer, regularPrice, geolocation, imgUrls,
         discountedPrice, bedrooms, bathrooms, parking, furnished, userRef } = listing
 
     return (
         <main>
-            {/* Slider */}
+
+            <Swiper
+                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                slidesPerView={1}
+                navigation={{ clickable: true }}
+                autoplay={true}
+                pagination={{ clickable: true }}
+                scrollbar={{ draggable: true }}
+            >
+                {imgUrls.map((url, idx) => (
+                    <SwiperSlide key={idx}>
+                        <img src={url} alt="House pictures" style={{ width: '100%' }} />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+
             <div className="shareIconDiv" onClick={handleShare}>
                 <img src={shareIcon} alt="share icon" />
             </div>
 
-            {shareLinkCopied && (
-                <p className="linkCopied">Link copied!</p>
-            )}
+            {
+                shareLinkCopied && (
+                    <p className="linkCopied">Link copied!</p>
+                )
+            }
 
             <div className="listingDetails">
                 <p className="listingName">
@@ -115,6 +138,6 @@ export const ListingDetails = () => {
                 )}
             </div>
 
-        </main>
+        </main >
     )
 }

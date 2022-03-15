@@ -5,6 +5,7 @@ import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 import { Spinner } from '../cmps/Spinner'
 import { ListingPreview } from '../cmps/ListingPreview'
+import { listingService } from "../services/listing.service"
 
 export const Category = () => {
 
@@ -14,23 +15,15 @@ export const Category = () => {
     const { categoryName } = useParams()
 
     useEffect(() => {
+        const listingsRef = collection(db, 'listings')
+        const q = query(listingsRef,
+            where('type', '==', categoryName),
+            orderBy('timestamp', 'desc'),
+            limit(10)
+        );
         (async () => {
             try {
-                const listingsRef = collection(db, 'listings')
-
-                const q = query(listingsRef,
-                    where('type', '==', categoryName),
-                    orderBy('timestamp', 'desc'),
-                    limit(10)
-                )
-                const querySnap = await getDocs(q)
-                const listings = []
-                querySnap.forEach(doc => {
-                    listings.push({
-                        id: doc.id,
-                        data: doc.data()
-                    })
-                })
+                const listings = await listingService.query(q)
                 setListings(listings)
                 setLoading(false)
             } catch (error) {
@@ -50,8 +43,8 @@ export const Category = () => {
                 <main>
                     <ul className="categoryListings">
                         {listings.map(listing => {
-                            const { id, data } = listing
-                            return <ListingPreview key={id} listing={data} id={id} />
+                            const { id } = listing
+                            return <ListingPreview key={id} listing={listing} id={id} />
 
                         })}
                     </ul>
