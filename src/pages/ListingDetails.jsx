@@ -5,7 +5,11 @@ import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { Spinner } from '../cmps/Spinner'
 import shareIcon from '../assets/svg/shareIcon.svg'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { listingService } from '../services/listing.service'
+
+const mapAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+const mapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 export const ListingDetails = () => {
 
@@ -39,7 +43,7 @@ export const ListingDetails = () => {
 
     if (loading) return <Spinner />
 
-    const { name, location, type, offer, regularPrice,
+    const { name, location, type, offer, regularPrice, geolocation,
         discountedPrice, bedrooms, bathrooms, parking, furnished, userRef } = listing
 
     return (
@@ -82,6 +86,25 @@ export const ListingDetails = () => {
 
                 </ul>
                 <p className="listingLocationTitle">Location</p>
+
+                <div className="leafletContainer">
+                    <MapContainer
+                        style={{ width: '100%', height: '100%' }}
+                        center={geolocation}
+                        zoom={14}
+                        scrollWheelZoom={false}
+                    >
+                        <TileLayer
+                            attribution={mapAttribution}
+                            url={mapUrl}
+                        />
+                        <Marker position={geolocation}>
+                            <Popup>
+                                {location}
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
+                </div>
 
                 {auth.currentUser?.uid !== userRef && (
                     <Link className='primaryButton'
