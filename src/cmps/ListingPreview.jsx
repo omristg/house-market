@@ -4,9 +4,9 @@ import bedIcon from '../assets/svg/bedIcon.svg'
 import bathtubIcon from '../assets/svg/bathtubIcon.svg'
 import { listingService } from "../services/listing.service"
 
-export const ListingPreview = ({ listing, id, onRemove }) => {
+export const ListingPreview = ({ listing, onRemove }) => {
 
-    const { name, location, imgUrls, type, offer, regularPrice,
+    const { id, name, location, imgUrls, type, offer, regularPrice,
         discountedPrice, bedrooms, bathrooms } = listing
 
     return (
@@ -43,7 +43,7 @@ export const ListingPreview = ({ listing, id, onRemove }) => {
                 <DeleteIcon
                     className="removeIcon"
                     fill="red"
-                    onClick={() => onRemove(id, listing.name)}
+                    onClick={() => onRemove(id, name)}
                 />
             }
         </li>

@@ -44,7 +44,7 @@ export const Category = () => {
                     <ul className="categoryListings">
                         {listings.map(listing => {
                             const { id } = listing
-                            return <ListingPreview key={id} listing={listing} id={id} />
+                            return <ListingPreview key={id} listing={listing} />
 
                         })}
                     </ul>

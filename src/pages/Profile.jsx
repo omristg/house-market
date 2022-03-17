@@ -1,22 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { getAuth, updateProfile } from 'firebase/auth'
-import { updateDoc, doc } from 'firebase/firestore'
+import { collection, query, where, orderBy, updateDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 import keyboardArrowRightIcon from '../assets/svg/keyboardArrowRightIcon.svg'
 import homeIcon from '../assets/svg/homeIcon.svg'
+import { listingService } from '../services/listing.service'
+import { ListingPreview } from '../cmps/ListingPreview'
 
 export const Profile = () => {
 
     const navigate = useNavigate()
     const auth = getAuth()
 
+    const [loading, setLoading] = useState(true)
+    const [listings, setListings] = useState([])
     const [changeDetails, setChangeDetails] = useState(false)
     const [formData, setFormData] = useState({
         name: auth.currentUser.displayName,
         email: auth.currentUser.email
     })
+
+    useEffect(() => {
+        const listingsRef = collection(db, 'listings')
+        const q = query(listingsRef,
+            where('userRef', '==', auth.currentUser.uid),
+            orderBy('timestamp', 'desc')
+        );
+        (async () => {
+            const listings = await listingService.query(q)
+            setListings(listings)
+            setLoading(false)
+        })();
+    }, [auth.currentUser.uid])
 
     const handleChange = ({ target }) => {
         setFormData(prevState => ({
@@ -28,7 +45,6 @@ export const Profile = () => {
     const onLogout = async () => {
         await auth.signOut()
         navigate('/')
-
     }
 
     const onSubmit = async () => {
@@ -46,7 +62,21 @@ export const Profile = () => {
         }
     }
 
+    const onRemove = async (listingId) => {
+        if (!window.confirm('Are you sure you want to remove this?')) return
+        try {
+            await listingService.remove(listingId)
+            const filteredListings = listings.filter(listing => listing.id !== listingId)
+            setListings(filteredListings)
+            toast.success('listing removed')
+        } catch (error) {
+            toast.error('Could not remove listing')
+        }
+
+    }
+
     const { name, email } = formData
+
 
     return (
         <div className='profile'>
@@ -91,6 +121,18 @@ export const Profile = () => {
                 <p>Sell or rent your home </p>
                 <img src={keyboardArrowRightIcon} alt="right arrow" />
             </Link>
+
+            {!loading && listings.length > 0 && (
+                <>
+                    <p className="listingText">Your Listings</p>
+                    <ul className="listingsList">
+                        {listings.map(listing => (
+                            <ListingPreview key={listing.id} listing={listing} onRemove={onRemove} />
+                        ))}
+                    </ul>
+                </>
+            )}
+
         </div>
     )
 }
