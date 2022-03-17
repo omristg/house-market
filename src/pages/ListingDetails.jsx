@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
-import { Spinner } from '../cmps/Spinner'
+import { Spinner } from '../cmps/shared/Spinner'
 import shareIcon from '../assets/svg/shareIcon.svg'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
@@ -55,7 +55,6 @@ export const ListingDetails = () => {
 
     return (
         <main>
-
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 slidesPerView={1}

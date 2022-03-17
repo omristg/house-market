@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import rentCategoryImage from '../assets/jpg/rentCategoryImage.jpg'
 import sellCategoryImage from '../assets/jpg/sellCategoryImage.jpg'
-
+import { ExploreSlider } from '../cmps/ExploreSlider'
 
 export const Explore = () => {
 
@@ -11,8 +11,8 @@ export const Explore = () => {
                 <p className="pageHeader">Explore</p>
             </header>
 
+            <ExploreSlider />
             <main>
-                {/* Siler */}
 
                 <p className="exploreCategoryHeading">Categories</p>
                 <div className="exploreCategories">

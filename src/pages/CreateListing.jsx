@@ -4,8 +4,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { v4 as uuid } from 'uuid'
 import { toast } from "react-toastify"
-import { Spinner } from '../cmps/Spinner'
-import { ProgressBar } from "../cmps/ProgressBar"
+import { Spinner } from '../cmps/shared/Spinner'
+import { ProgressBar } from "../cmps/shared/ProgressBar"
 import { listingService } from "../services/listing.service"
 
 export const CreateListing = () => {

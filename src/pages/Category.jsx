@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { collection, query, where, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
-import { Spinner } from '../cmps/Spinner'
+import { Spinner } from '../cmps/shared/Spinner'
 import { ListingPreview } from '../cmps/ListingPreview'
 import { listingService } from "../services/listing.service"
 
