@@ -29,7 +29,7 @@ export const Profile = () => {
             orderBy('timestamp', 'desc')
         );
         (async () => {
-            const listings = await listingService.query(q)
+            const { listings } = await listingService.query(q)
             setListings(listings)
             setLoading(false)
         })();

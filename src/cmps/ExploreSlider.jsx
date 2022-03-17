@@ -25,7 +25,7 @@ export const ExploreSlider = () => {
                 orderBy('timestamp', 'desc'),
                 limit(10)
             )
-            const listings = await listingService.query(q)
+            const {listings} = await listingService.query(q)
             setListings(listings)
             setLoading(false)
         })();

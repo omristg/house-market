@@ -12,13 +12,14 @@ export const listingService = {
 async function query(query) {
     const querySnap = await getDocs(query)
     const listings = []
-    querySnap.forEach(doc => {
+    querySnap.forEach(doc => (
         listings.push({
             id: doc.id,
             ...doc.data()
         })
-    })
-    return listings
+    ))
+    const lastVisible = querySnap.docs[querySnap.docs.length - 1]
+    return { listings, lastVisible }
 
 }
 
