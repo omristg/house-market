@@ -4,6 +4,7 @@ import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import googleIcon from '../assets/svg/googleIcon.svg'
 import { toast } from 'react-toastify'
+import { userService } from '../services/user.service'
 
 export const OAuth = () => {
 
@@ -18,8 +19,7 @@ export const OAuth = () => {
             const res = await signInWithPopup(auth, provider)
             const user = res.user
 
-            const docRef = doc(db, 'users', user.uid)
-            const docSnap = await getDoc(docRef)
+            const { docRef, docSnap } = await userService.getById(user.uid)
 
             if (!docSnap.exists()) {
                 await setDoc(docRef, {

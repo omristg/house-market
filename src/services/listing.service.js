@@ -1,10 +1,11 @@
-import { doc, getDocs, getDoc } from 'firebase/firestore'
+import { doc, getDocs, getDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 
 export const listingService = {
     formattedPrice,
     query,
-    getbyid
+    getbyid,
+    add
 }
 
 async function query(query) {
@@ -26,7 +27,12 @@ async function getbyid(listingId) {
     const listing = docSnap.data()
     if (docSnap.exists()) return listing
     else throw new Error('Could not load listing')
+}
 
+async function add(listingToAdd) {
+    listingToAdd.timestamp = serverTimestamp()
+    const addedListing = await addDoc(collection(db, 'listings'), listingToAdd)
+    return addedListing
 }
 
 function formattedPrice(price) {

@@ -1,12 +1,11 @@
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { db } from '../firebase.config'
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import { ReactComponent as KeyboardArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { OAuth } from '../cmps/OAuth'
+import { userService } from "../services/user.service"
 
 
 export const Signup = () => {
@@ -49,8 +48,7 @@ export const Signup = () => {
 
             const formDataCopy = { ...formData }
             delete formDataCopy.password
-            formDataCopy.timestamp = serverTimestamp()
-            await setDoc(doc(db, 'users', user.uid), formDataCopy)
+            await userService.update(user.uid, formDataCopy)
 
             navigate('/')
         } catch (err) {

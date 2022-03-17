@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom"
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from "react-toastify"
+import { userService } from "../services/user.service"
 
 export const Contact = () => {
 
@@ -15,8 +16,7 @@ export const Contact = () => {
 
     useEffect(() => {
         (async () => {
-            const docRef = doc(db, 'users', landlordId)
-            const docSnap = await getDoc(docRef)
+            const { docSnap } = await userService.getById(landlordId)
             if (docSnap.exists()) setLandlord(docSnap.data())
             else toast.error('Could not get landlord')
         })();

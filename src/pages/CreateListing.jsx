@@ -2,12 +2,11 @@ import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
-import { db } from '../firebase.config'
 import { v4 as uuid } from 'uuid'
 import { toast } from "react-toastify"
 import { Spinner } from '../cmps/Spinner'
 import { ProgressBar } from "../cmps/ProgressBar"
+import { listingService } from "../services/listing.service"
 
 export const CreateListing = () => {
 
@@ -88,7 +87,6 @@ export const CreateListing = () => {
             ...formData,
             imgUrls,
             geolocation,
-            timestamp: serverTimestamp(),
         }
 
         formDataCopy.location = address
@@ -96,10 +94,10 @@ export const CreateListing = () => {
         delete formDataCopy.address
         !formDataCopy.offer && delete formDataCopy.discountedPrice
 
-        const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
+        const addedListing = await listingService.add(formDataCopy)
         setProgress(false)
         toast.success('Listing saved')
-        navigate(`/category/${formDataCopy.type}/${docRef.id}`)
+        navigate(`/category/${formDataCopy.type}/${addedListing.id}`)
     }
 
     const storeImage = async (image) => {
