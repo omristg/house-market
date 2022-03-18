@@ -4,8 +4,8 @@ import { collection, query, where, orderBy, limit, startAfter } from 'firebase/f
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 import { Spinner } from '../cmps/shared/Spinner'
-import { ListingPreview } from '../cmps/ListingPreview'
 import { listingService } from "../services/listing.service"
+import { ListingList } from "../cmps/ListingList"
 
 export const Category = () => {
 
@@ -54,29 +54,14 @@ export const Category = () => {
         })();
     }
 
-    return (
-        <div className="category">
-            <header>
-                <p className="pageHeader">
-                    Places for {categoryName === 'rent' ? 'rent' : 'sale'}
-                </p>
-            </header>
-            {loading ? <Spinner /> : listings && listings.length > 0 ?
-                <main>
-                    <ul className="categoryListings">
-                        {listings.map(listing => {
-                            const { id } = listing
-                            return <ListingPreview key={id} listing={listing} />
+    if (loading) return <Spinner />
 
-                        })}
-                    </ul>
-                </main>
-                :
-                <p>No listings for {categoryName}</p>
-            }
-            {lastFetchListing && (
-                <p className="loadMore" onClick={onFetchMore}>Load More</p>
-            )}
-        </div>
+    return (
+        <ListingList
+            listings={listings}
+            lastFetchListing={lastFetchListing}
+            onFetchMore={onFetchMore}
+            categoryName={categoryName}
+        />
     )
 }
