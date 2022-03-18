@@ -13,6 +13,7 @@ import { Navbar } from "./cmps/Navbar"
 import { CreateListing } from "./pages/CreateListing"
 import { ListingDetails } from './pages/ListingDetails'
 import { Contact } from "./pages/Contact"
+import { EditListing } from "./pages/EditListing"
 
 export const RootCmp = () => {
 
@@ -24,6 +25,7 @@ export const RootCmp = () => {
                     <Route path="/offers" element={<Offers />} />
                     <Route path="/category/:categoryName" element={<Category />} />
                     <Route path="/create-listing" element={<CreateListing />} />
+                    <Route path="/edit-listing/:listingId" element={<EditListing />} />
                     <Route path="/category/:categoryName/:listingId" element={<ListingDetails />} />
                     <Route path="/contact/:landlordId" element={<Contact />} />
                     <Route path="/signin" element={<Signin />} />

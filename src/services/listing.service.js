@@ -1,4 +1,4 @@
-import { doc, getDocs, getDoc, addDoc, deleteDoc, collection, serverTimestamp } from 'firebase/firestore'
+import { doc, getDocs, getDoc, addDoc, deleteDoc, collection, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 
 export const listingService = {
@@ -6,7 +6,8 @@ export const listingService = {
     query,
     getbyid,
     add,
-    remove
+    remove,
+    edit
 }
 
 async function query(query) {
@@ -35,6 +36,12 @@ async function add(listingToAdd) {
     listingToAdd.timestamp = serverTimestamp()
     const addedListing = await addDoc(collection(db, 'listings'), listingToAdd)
     return addedListing
+}
+
+async function edit(listingToEdit) {
+    // listingToEdit.timestamp = serverTimestamp()
+    const addedListing = await updateDoc(doc(db, 'listings', listingToEdit.id), listingToEdit)
+    // return addedListing
 }
 
 async function remove(listingId) {

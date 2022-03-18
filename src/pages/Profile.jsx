@@ -75,6 +75,10 @@ export const Profile = () => {
 
     }
 
+    const onEdit = (listingId) => {
+        navigate(`/edit-listing/${listingId}`)
+    }
+
     const { name, email } = formData
 
 
@@ -127,7 +131,7 @@ export const Profile = () => {
                     <p className="listingText">Your Listings</p>
                     <ul className="listingsList">
                         {listings.map(listing => (
-                            <ListingPreview key={listing.id} listing={listing} onRemove={onRemove} />
+                            <ListingPreview key={listing.id} listing={listing} onRemove={onRemove} onEdit={onEdit} />
                         ))}
                     </ul>
                 </>

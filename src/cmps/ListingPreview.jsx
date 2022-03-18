@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg'
+import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg'
 import bedIcon from '../assets/svg/bedIcon.svg'
 import bathtubIcon from '../assets/svg/bathtubIcon.svg'
 import { listingService } from "../services/listing.service"
 
-export const ListingPreview = ({ listing, onRemove }) => {
+export const ListingPreview = ({ listing, onRemove, onEdit }) => {
 
     const { id, name, location, imgUrls, type, offer, regularPrice,
         discountedPrice, bedrooms, bathrooms } = listing
@@ -39,13 +40,18 @@ export const ListingPreview = ({ listing, onRemove }) => {
                 </div>
             </Link>
 
-            {onRemove &&
+            {onRemove && (
                 <DeleteIcon
                     className="removeIcon"
                     fill="red"
                     onClick={() => onRemove(id, name)}
                 />
+            )
+
             }
+            {onEdit && (
+                <EditIcon className="editIcon" onClick={() => onEdit(id)} />
+            )}
         </li>
     )
 }
