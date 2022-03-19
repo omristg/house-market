@@ -1,0 +1,46 @@
+.explore {
+    .heading,
+    .category-heading {
+        font-weight: 700;
+    }
+
+    .category-heading {
+        margin-top: 3rem;
+    }
+
+    .categories {
+        display: flex;
+        justify-content: space-between;
+
+        a {
+            width: 48%;
+        }
+
+        img {
+            min-height: 115px;
+            height: 15vw;
+            width: 100%;
+            border-radius: 1.5rem;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+
+        p {
+            font-weight: 500;
+            text-align: left;
+        }
+    }
+}
+.explore {
+    margin-bottom: 10rem;
+}
+@media (min-width: 1217px) {
+    .explore {
+        margin-bottom: 10rem;
+    }
+}
+@media (max-height: 536) {
+    .explore {
+        margin-bottom: 10rem;
+    }
+}

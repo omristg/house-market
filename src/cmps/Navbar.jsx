@@ -19,7 +19,7 @@ export const Navbar = () => {
                     <li>
                         <ExploreIcon fill={pathMatchRoute('/') ? "#2c2c2c" : "#8c8c8c"} width="36px" height="36px"
                             onClick={() => navigate('/')} />
-                        <p className={pathMatchRoute('/') ? 'nav-item-active' : 'nav-item'}>Explore</p>
+                        <p className={`nav-item ${pathMatchRoute('/') ? 'nav-item-active' : ''}`}>Explore</p>
                     </li>
                     <li>
                         <LocalOfferIcon fill={pathMatchRoute('/offers') ? "#2c2c2c" : "#8c8c8c"} width="36px" height="36px"

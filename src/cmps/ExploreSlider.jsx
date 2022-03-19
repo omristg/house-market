@@ -25,7 +25,7 @@ export const ExploreSlider = () => {
                 orderBy('timestamp', 'desc'),
                 limit(10)
             )
-            const {listings} = await listingService.query(q)
+            const { listings } = await listingService.query(q)
             setListings(listings)
             setLoading(false)
         })();
@@ -35,8 +35,8 @@ export const ExploreSlider = () => {
     if (loading) return <Spinner />
 
     return (
-        <>
-            <p className="exploreHeading">Recommended</p>
+        <div className="explore-slider">
+            <p className="heading">Recommended</p>
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 slidesPerView={1}
@@ -54,17 +54,17 @@ export const ExploreSlider = () => {
                             key={id}
                             onClick={() => navigate(`/category/${type}/${id}`)}
                         >
-                            <div className="swiperSlideDiv">
-                                <p className="swiperSlideText">{name}</p>
-                                <p className="swiperSlidePrice">
+                            <div className="slides-container">
+                                <p className="text">{name}</p>
+                                <p className="price">
                                     {price}{type === 'rent' && ' / Month'}
                                 </p>
                             </div>
-                            <img src={imgUrls[0]} alt="House pictures" style={{ width: '100%' }} />
+                            <img src={imgUrls[0]} alt="House pictures" style={{ width: '100%' }} className="slides-img"/>
                         </SwiperSlide>
                     )
                 })}
             </Swiper>
-        </>
+        </div>
     )
 }

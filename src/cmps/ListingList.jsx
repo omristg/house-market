@@ -5,7 +5,7 @@ export const ListingList = ({ listings, lastFetchListing, onFetchMore, isOffers,
     return (
         <div className="listing-list">
             <header>
-                <p className="pageHeader">
+                <p className="page-header">
                     {isOffers ? 'Offers' : `Places for ${categoryName}`}
                 </p>
             </header>

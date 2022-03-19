@@ -8,21 +8,20 @@ export const Explore = () => {
     return (
         <div className="explore">
             <header>
-                <p className="pageHeader">Explore and Check</p>
+                <p className="page-header">Explore</p>
             </header>
 
             <ExploreSlider />
             <main>
-
-                <p className="exploreCategoryHeading">Categories</p>
-                <div className="exploreCategories">
+                <p className="category-heading">Categories</p>
+                <div className="categories">
                     <Link to="/category/rent">
-                        <img src={rentCategoryImage} alt="rent" className="exploreCategoryImg" />
-                        <p className="exploreCategoryName">Places for rent</p>
+                        <img src={rentCategoryImage} alt="rent" />
+                        <p>Places for rent</p>
                     </Link>
                     <Link to="/category/sale">
-                        <img src={sellCategoryImage} alt="sell" className="exploreCategoryImg" />
-                        <p className="exploreCategoryName">Places for sell</p>
+                        <img src={sellCategoryImage} alt="sell" />
+                        <p>Places for sell</p>
                     </Link>
                 </div>
             </main>
