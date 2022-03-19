@@ -39,9 +39,9 @@ async function add(listingToAdd) {
 }
 
 async function edit(listingToEdit) {
-    // listingToEdit.timestamp = serverTimestamp()
+    listingToEdit.timestamp = serverTimestamp()
     const addedListing = await updateDoc(doc(db, 'listings', listingToEdit.id), listingToEdit)
-    // return addedListing
+    return addedListing
 }
 
 async function remove(listingId) {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { getAuth, updateProfile } from 'firebase/auth'
-import { collection, query, where, orderBy, updateDoc, doc } from 'firebase/firestore'
+import { collection, query, where, orderBy, updateDoc, doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 import keyboardArrowRightIcon from '../assets/svg/keyboardArrowRightIcon.svg'
@@ -23,16 +23,21 @@ export const Profile = () => {
     })
 
     useEffect(() => {
-        const listingsRef = collection(db, 'listings')
-        const q = query(listingsRef,
+        const q = query(collection(db, 'listings'),
             where('userRef', '==', auth.currentUser.uid),
             orderBy('timestamp', 'desc')
-        );
-        (async () => {
-            const { listings } = await listingService.query(q)
+        )
+        const unsub = onSnapshot(q, (querySnap) => {
+            const listings = []
+            querySnap.forEach(doc => {
+                listings.push({ id: doc.id, ...doc.data() })
+            })
             setListings(listings)
             setLoading(false)
-        })();
+        })
+        return () => {
+            unsub()
+        }
     }, [auth.currentUser.uid])
 
     const handleChange = ({ target }) => {
@@ -66,8 +71,6 @@ export const Profile = () => {
         if (!window.confirm('Are you sure you want to remove this?')) return
         try {
             await listingService.remove(listingId)
-            const filteredListings = listings.filter(listing => listing.id !== listingId)
-            setListings(filteredListings)
             toast.success('listing removed')
         } catch (error) {
             toast.error('Could not remove listing')
