@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { collection, query, where, orderBy, limit, startAfter, onSnapshot, doc } from 'firebase/firestore'
+import { collection, query, where, orderBy, limit, startAfter } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 import { Spinner } from '../cmps/shared/Spinner'
