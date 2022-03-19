@@ -8,7 +8,7 @@ export const Explore = () => {
     return (
         <div className="explore">
             <header>
-                <p className="pageHeader">Explore</p>
+                <p className="pageHeader">Explore and Check</p>
             </header>
 
             <ExploreSlider />
