@@ -46,7 +46,7 @@ export const CreateListing = () => {
                 if (user) {
                     setFormData({ ...formData, userRef: user.uid })
                     setLoading(false)
-                } else navigate('signin')
+                } else navigate('login')
 
             })
         }
@@ -175,7 +175,7 @@ export const CreateListing = () => {
     return (
         <div className="profile">
             <header>
-                <p className="pageHeader">Create a listing</p>
+                <p className="page-header">Create a listing</p>
             </header>
 
             <main>

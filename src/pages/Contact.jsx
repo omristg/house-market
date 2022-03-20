@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react"
 import { useParams, useSearchParams } from "react-router-dom"
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../firebase.config'
 import { toast } from "react-toastify"
 import { userService } from "../services/user.service"
 
@@ -23,9 +21,9 @@ export const Contact = () => {
     }, [landlordId])
 
     return (
-        <div className="pageContainer">
+        <div className="page-container">
             <header>
-                <p className="pageHeader">Contact Landlord</p>
+                <p className="page-header">Contact Landlord</p>
             </header>
 
             {landlord && (

@@ -6,7 +6,7 @@ import { ReactComponent as KeyboardArrowRightIcon } from '../assets/svg/keyboard
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { OAuth } from '../cmps/OAuth'
 
-export const Signin = () => {
+export const Login = () => {
 
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
@@ -46,14 +46,14 @@ export const Signin = () => {
 
     return (
         <>
-            <div className="pageContainer">
+            <div className="page-container">
                 <header>
-                    <p className="pageHeader">
+                    <p className="page-header">
                         Welcome Back
                     </p>
                 </header>
                 <form onSubmit={onSubmit}>
-                    <input type="email" className="emailInput"
+                    <input type="email" className="email-input"
                         id="email"
                         name="email"
                         value={email}
@@ -61,10 +61,10 @@ export const Signin = () => {
                         placeholder="Email"
                     />
 
-                    <div className="passwordInputDiv">
+                    <div className="password-input-container">
 
                         <input type={showPassword ? "text" : "password"}
-                            className="passwordInput"
+                            className="password-input"
                             id="password"
                             name="password"
                             value={password}
@@ -74,17 +74,15 @@ export const Signin = () => {
                         />
 
                         <img src={visibilityIcon} alt="show password"
-                            className="showPassword"
+                            className="show-password"
                             onClick={onShowPassword}
                         />
                     </div>
-                    <Link to="/forgot-password" className="forgotPasswordLink">
+                    <Link to="/forgot-password" className="forgot-password-link">
                         Forgot Password
                     </Link>
                     <div className="signInBar">
-                        <p className="SignInText">
-                            Sign In
-                        </p>
+                        <p className="SignInText">Login</p>
                         <button className="signInButton">
                             <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
                         </button>

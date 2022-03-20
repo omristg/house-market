@@ -1,0 +1,67 @@
+.listing-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+
+    a {
+        display: contents;
+    }
+
+    .listing-image {
+        width: 30%;
+        height: 100px;
+        border-radius: 1.5rem;
+        object-fit: cover;
+    }
+
+    .details-container {
+        width: 65%;
+
+        .location {
+            font-weight: 600;
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+
+        .name {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .price {
+            margin-top: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-clr);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 275px;
+
+            .text {
+                font-weight: 500;
+                font-size: 0.7rem;
+            }
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .listing-image {
+            width: 19%;
+            height: 217px;
+        }
+
+        .details-container {
+            width: 79%;
+        }
+    }
+}

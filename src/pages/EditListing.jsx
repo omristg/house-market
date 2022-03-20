@@ -50,7 +50,7 @@ export const EditListing = () => {
                 if (user) {
                     setFormData({ ...formData, userRef: user.uid })
                     setLoading(false)
-                } else navigate('signin')
+                } else navigate('login')
 
             })
         }
@@ -200,7 +200,7 @@ export const EditListing = () => {
     return (
         <div className="profile">
             <header>
-                <p className="pageHeader">Edit listing</p>
+                <p className="page-header">Edit listing</p>
             </header>
 
             <main>

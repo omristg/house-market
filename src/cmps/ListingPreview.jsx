@@ -11,15 +11,13 @@ export const ListingPreview = ({ listing, onRemove, onEdit }) => {
         discountedPrice, bedrooms, bathrooms } = listing
 
     return (
-        <li className="categoryListing">
-            <Link to={`/category/${type}/${id}`}
-                className="categoryListingLink"
-            >
-                <img src={imgUrls[0]} alt={name} className="categoryListingImg" />
-                <div className="categoryListingDetails">
-                    <p className="categoryListingLocation">{location}</p>
-                    <p className="categoryListingName">{name}</p>
-                    <p className="categoryListingPrice">
+        <li className="listing-preview">
+            <Link to={`/category/${type}/${id}`}>
+                <img src={imgUrls[0]} alt={name} className="listing-image" />
+                <div className="details-container">
+                    <p className="location">{location}</p>
+                    <p className="name">{name}</p>
+                    <p className="price">
                         {offer ?
                             listingService.formattedPrice(discountedPrice)
                             :
@@ -27,13 +25,13 @@ export const ListingPreview = ({ listing, onRemove, onEdit }) => {
                         }
                         {type === 'rent' && ' / Month'}
                     </p>
-                    <div className="categoryListingInfoDiv">
+                    <div className="info-container">
                         <img src={bedIcon} alt="bed" />
-                        <p className="categorylistingInfoText">
+                        <p className="text">
                             {bedrooms > 1 ? `${bedrooms} Bedrooms` : '1 Bedroom'}
                         </p>
                         <img src={bathtubIcon} alt="bathtub" />
-                        <p className="categorylistingInfoText">
+                        <p className="text">
                             {bathrooms > 1 ? `${bathrooms} Bathrooms` : '1 Bathroom'}
                         </p>
                     </div>

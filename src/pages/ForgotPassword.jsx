@@ -25,23 +25,23 @@ export const ForgotPassword = () => {
     }
 
     return (
-        <div className="pageContainer">
+        <div className="page-container">
             <header>
-                <p className="pageHeader">Forgot Password</p>
+                <p className="page-header">Forgot Password</p>
             </header>
 
             <main>
                 <form onSubmit={onSubmit}>
                     <input type="email"
                         id='email'
-                        className='emailInput'
+                        className='email-input'
                         value={email}
                         onChange={handleChange}
                         placeholder="Email"
                     />
                 </form>
 
-                <Link className='forgotPasswordLink' to="/signin">Sign In</Link>
+                <Link className='forgot-password-link' to="/login">Login</Link>
 
                 <div className="signInBar">
                     <div className="signInText">Send Reset Link</div>

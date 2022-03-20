@@ -11,7 +11,7 @@ export const ListingList = ({ listings, lastFetchListing, onFetchMore, isOffers,
             </header>
             {listings && listings.length > 0 ?
                 <main>
-                    <ul className="categoryListings">
+                    <ul>
                         {listings.map(listing => {
                             const { id } = listing
                             return <ListingPreview key={id} listing={listing} />

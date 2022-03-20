@@ -58,30 +58,30 @@ export const Signup = () => {
 
     return (
         <>
-            <div className="pageContainer">
+            <div className="page-container">
                 <header>
-                    <p className="pageHeader">
+                    <p className="page-header">
                         Welcome Back
                     </p>
                 </header>
                 <form onSubmit={onSubmit}>
-                    <input type="text" className="nameInput"
+                    <input type="text" className="name-input"
                         id="name"
                         value={name}
                         onChange={handleChange}
                         placeholder="Name"
                     />
 
-                    <input type="email" className="emailInput"
+                    <input type="email" className="email-input"
                         id="email"
                         value={email}
                         onChange={handleChange}
                         placeholder="Email"
                     />
 
-                    <div className="passwordInputDiv">
+                    <div className="password-input-container">
                         <input type={showPassword ? "text" : "password"}
-                            className="passwordInput"
+                            className="password-input"
                             id="password"
                             name="password"
                             value={password}
@@ -90,11 +90,11 @@ export const Signup = () => {
                             onBlur={() => setShowPassword(false)}
                         />
                         <img src={visibilityIcon} alt="show password"
-                            className="showPassword"
+                            className="show-password"
                             onClick={onShowPassword}
                         />
                     </div>
-                    <Link to="/forgot-password" className="forgotPasswordLink">
+                    <Link to="/forgot-password" className="forgot-password-link">
                         Forgot Password
                     </Link>
                     <div className="signUpBar">
@@ -109,7 +109,7 @@ export const Signup = () => {
 
                 <OAuth />
 
-                <Link to="/signin" className="registerLink">Sign In Instead</Link>
+                <Link to="/login" className="registerLink">Login Instead</Link>
             </div>
         </>
     )

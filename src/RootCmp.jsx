@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Explore } from './pages/Explore'
 import { ForgotPassword } from './pages/ForgotPassword'
 import { Offers } from './pages/Offers'
-import { Signin } from './pages/Signin'
+import { Login } from './pages/Login'
 import { Signup } from './pages/Signup'
 import { Profile } from "./pages/Profile"
 import { PrivateRoute } from "./pages/PrivateRoute"
@@ -28,7 +28,7 @@ export const RootCmp = () => {
                     <Route path="/edit-listing/:listingId" element={<EditListing />} />
                     <Route path="/category/:categoryName/:listingId" element={<ListingDetails />} />
                     <Route path="/contact/:landlordId" element={<Contact />} />
-                    <Route path="/signin" element={<Signin />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/profile" element={<PrivateRoute />}>
                         <Route path="/profile" element={<Profile />} />

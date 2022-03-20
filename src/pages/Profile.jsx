@@ -87,26 +87,26 @@ export const Profile = () => {
 
     return (
         <div className='profile'>
-            <header className="profileHeader">
-                <p className="pageHeader">My Profile</p>
-                <button className='logOut' onClick={onLogout}>Logout</button>
+            <header>
+                <p className="page-header">My Profile</p>
+                <button className='btn-logout' onClick={onLogout}>Logout</button>
             </header>
 
-            <main className="profileDetailsHeader">
-                <p className="profileDeatilsText">Personal Details</p>
-                <p className='changePersonalDetails' onClick={() => {
+            <section className="change-details-section">
+                <p>Personal Details</p>
+                <p className='btn' onClick={() => {
                     changeDetails && onSubmit()
                     setChangeDetails(prevState => !prevState)
                 }}>
                     {changeDetails ? 'Done' : 'Change'}
                 </p>
-            </main>
+            </section>
 
-            <div className="profileCard">
+            <div className="card">
                 <form>
                     <input type="text"
                         id="name"
-                        className={!changeDetails ? 'profileName' : 'profileNameActive'}
+                        className={`name ${!changeDetails ? '' : 'active'}`}
                         disabled={!changeDetails}
                         value={name}
                         onChange={handleChange}
@@ -115,29 +115,30 @@ export const Profile = () => {
 
                     <input type="text"
                         id="email"
-                        className={!changeDetails ? 'profileEmail' : 'profileEmailActive'}
+                        className={`email ${!changeDetails ? '' : 'active'}`}
                         disabled={!changeDetails}
                         value={email}
                         onChange={handleChange}
                         placeholder={email}
                     />
+
                 </form>
             </div>
-            <Link className="createListing" to="/create-listing">
+            <Link className="create-listing" to="/create-listing">
                 <img src={homeIcon} alt="home" />
                 <p>Sell or rent your home </p>
                 <img src={keyboardArrowRightIcon} alt="right arrow" />
             </Link>
 
             {!loading && listings.length > 0 && (
-                <>
-                    <p className="listingText">Your Listings</p>
-                    <ul className="listingsList">
+                <div className="list-container">
+                    <p className="text">Your Listings</p>
+                    <ul>
                         {listings.map(listing => (
                             <ListingPreview key={listing.id} listing={listing} onRemove={onRemove} onEdit={onEdit} />
                         ))}
                     </ul>
-                </>
+                </div>
             )}
 
         </div>
