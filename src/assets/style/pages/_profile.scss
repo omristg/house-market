@@ -62,17 +62,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 3rem;
     }
 
-    .list-container {
-        .text {
-            margin-top: 3rem;
-            font-weight: 600;
-        }
-
-        ul {
-            margin-bottom: 10rem;
-            padding: 0;
-        }
+    .listings-header {
+        font-weight: 600;
     }
 }

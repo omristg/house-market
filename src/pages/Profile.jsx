@@ -131,8 +131,8 @@ export const Profile = () => {
             </Link>
 
             {!loading && listings.length > 0 && (
-                <div className="list-container">
-                    <p className="text">Your Listings</p>
+                <div className="listing-list">
+                    <p className="listings-header">Your Listings</p>
                     <ul>
                         {listings.map(listing => (
                             <ListingPreview key={listing.id} listing={listing} onRemove={onRemove} onEdit={onEdit} />
