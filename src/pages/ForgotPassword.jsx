@@ -43,9 +43,9 @@ export const ForgotPassword = () => {
 
                 <Link className='forgot-password-link' to="/login">Login</Link>
 
-                <div className="signInBar">
-                    <div className="signInText">Send Reset Link</div>
-                    <button className="signInButton">
+                <div className="login-bar">
+                    <div className="login-text">Send Reset Link</div>
+                    <button className="login-btn">
                         <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
                     </button>
                 </div>

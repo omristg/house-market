@@ -34,10 +34,10 @@ export const OAuth = () => {
     }
 
     return (
-        <div className="socialLogin">
+        <div className="social-login">
             <p>{location.pathname === '/login' ? 'Login' : 'Signup'} with </p>
-            <button className="socialIconDiv" onClick={onGoogleClick}>
-                <img src={googleIcon} alt="google icon" className="socialIconImg" />
+            <button className="social-icon-container" onClick={onGoogleClick}>
+                <img src={googleIcon} alt="google icon" />
             </button>
         </div>
     )

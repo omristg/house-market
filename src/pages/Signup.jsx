@@ -97,11 +97,11 @@ export const Signup = () => {
                     <Link to="/forgot-password" className="forgot-password-link">
                         Forgot Password
                     </Link>
-                    <div className="signUpBar">
-                        <p className="SignUpText">
+                    <div className="signup-bar">
+                        <p className="signup-text">
                             Sign Up
                         </p>
-                        <button className="signUpButton">
+                        <button className="signup-btn">
                             <KeyboardArrowRightIcon fill="#fff" width="34px" height="34px" />
                         </button>
                     </div>
@@ -109,7 +109,7 @@ export const Signup = () => {
 
                 <OAuth />
 
-                <Link to="/login" className="registerLink">Login Instead</Link>
+                <Link to="/login" className="register-link">Login Instead</Link>
             </div>
         </>
     )
