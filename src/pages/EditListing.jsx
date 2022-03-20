@@ -11,9 +11,10 @@ import { listingService } from "../services/listing.service"
 import { doc, updateDoc } from "firebase/firestore"
 import { db } from "../firebase.config"
 
+const API_KEY = process.env.REACT_APP_GEOCODE_API_KEY
+
 export const EditListing = () => {
 
-    const API_KEY = process.env.REACT_APP_GEOCODE_API_KEY
 
     const [progress, setProgress] = useState(false)
     const [loading, setLoading] = useState(true)
@@ -50,7 +51,7 @@ export const EditListing = () => {
                 if (user) {
                     setFormData({ ...formData, userRef: user.uid })
                     setLoading(false)
-                } else navigate('login')
+                } else navigate('/login')
 
             })
         }
@@ -198,18 +199,18 @@ export const EditListing = () => {
     if (loading) return <Spinner />
 
     return (
-        <div className="profile">
+        <div className="edit-listing">
             <header>
                 <p className="page-header">Edit listing</p>
             </header>
 
             <main>
                 <form onSubmit={onSubmit}>
-                    <label className="formLabel">Sell / Rent</label>
-                    <div className='formButtons'>
+                    <label>Sell / Rent</label>
+                    <div className='flex'>
                         <button
                             type='button'
-                            className={type === 'sale' ? 'formButtonActive' : 'formButton'}
+                            className={type === 'sale' ? 'active' : ''}
                             id='type'
                             value='sale'
                             onClick={onMutate}
@@ -218,7 +219,7 @@ export const EditListing = () => {
                         </button>
                         <button
                             type='button'
-                            className={type === 'rent' ? 'formButtonActive' : 'formButton'}
+                            className={type === 'rent' ? 'active' : ''}
                             id='type'
                             value='rent'
                             onClick={onMutate}
@@ -226,9 +227,9 @@ export const EditListing = () => {
                             Rent
                         </button>
                     </div>
-                    <label className='formLabel' htmlFor="name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input
-                        className='formInputName'
+                        className='listing-name-input'
                         type='text'
                         id='name'
                         value={name}
@@ -238,11 +239,11 @@ export const EditListing = () => {
                         required
                     />
 
-                    <div className='formRooms flex'>
+                    <div className='bedRooms flex'>
                         <div>
-                            <label className='formLabel' htmlFor="bedrooms">Bedrooms</label>
+                            <label htmlFor="bedrooms">Bedrooms</label>
                             <input
-                                className='formInputSmall'
+                                className='small-input'
                                 type='number'
                                 id='bedrooms'
                                 value={bedrooms}
@@ -253,9 +254,9 @@ export const EditListing = () => {
                             />
                         </div>
                         <div>
-                            <label className='formLabel' htmlFor="bathrooms">Bathrooms</label>
+                            <label htmlFor="bathrooms">Bathrooms</label>
                             <input
-                                className='formInputSmall'
+                                className='small-input'
                                 type='number'
                                 id='bathrooms'
                                 value={bathrooms}
@@ -267,10 +268,10 @@ export const EditListing = () => {
                         </div>
 
                     </div>
-                    <label className='formLabel'>Parking spot</label>
-                    <div className='formButtons'>
+                    <label>Parking spot</label>
+                    <div className='flex'>
                         <button
-                            className={parking ? 'formButtonActive' : 'formButton'}
+                            className={parking ? 'active' : ''}
                             type='button'
                             id='parking'
                             value={true}
@@ -281,7 +282,7 @@ export const EditListing = () => {
                             Yes
                         </button>
                         <button
-                            className={!parking && parking !== null ? 'formButtonActive' : 'formButton'}
+                            className={!parking && parking !== null ? 'active' : ''}
                             type='button'
                             id='parking'
                             value={false}
@@ -291,10 +292,10 @@ export const EditListing = () => {
                         </button>
                     </div>
 
-                    <label className='formLabel'>Furnished</label>
-                    <div className='formButtons'>
+                    <label>Furnished</label>
+                    <div className='flex'>
                         <button
-                            className={furnished ? 'formButtonActive' : 'formButton'}
+                            className={furnished ? 'active' : ''}
                             type='button'
                             id='furnished'
                             value={true}
@@ -303,11 +304,7 @@ export const EditListing = () => {
                             Yes
                         </button>
                         <button
-                            className={
-                                !furnished && furnished !== null
-                                    ? 'formButtonActive'
-                                    : 'formButton'
-                            }
+                            className={!furnished && furnished !== null ? 'active' : ''}
                             type='button'
                             id='furnished'
                             value={false}
@@ -317,9 +314,9 @@ export const EditListing = () => {
                         </button>
                     </div>
 
-                    <label className='formLabel' htmlFor="address">Address</label>
+                    <label htmlFor="address">Address</label>
                     <textarea
-                        className='formInputAddress'
+                        className='address-input'
                         type='text'
                         id='address'
                         value={address}
@@ -330,9 +327,9 @@ export const EditListing = () => {
                     {!geolocationEnabled && (
                         <div className='formLatLng flex'>
                             <div>
-                                <label className='formLabel'>Latitude</label>
+                                <label>Latitude</label>
                                 <input
-                                    className='formInputSmall'
+                                    className='small-input'
                                     type='number'
                                     id='latitude'
                                     value={latitude}
@@ -341,9 +338,9 @@ export const EditListing = () => {
                                 />
                             </div>
                             <div>
-                                <label className='formLabel'>Longitude</label>
+                                <label>Longitude</label>
                                 <input
-                                    className='formInputSmall'
+                                    className='small-input'
                                     type='number'
                                     id='longitude'
                                     value={longitude}
@@ -354,10 +351,10 @@ export const EditListing = () => {
                         </div>
                     )}
 
-                    <label className='formLabel'>Offer</label>
-                    <div className='formButtons'>
+                    <label>Offer</label>
+                    <div className='flex'>
                         <button
-                            className={offer ? 'formButtonActive' : 'formButton'}
+                            className={offer ? 'active' : ''}
                             type='button'
                             id='offer'
                             value={true}
@@ -367,7 +364,7 @@ export const EditListing = () => {
                         </button>
                         <button
                             className={
-                                !offer && offer !== null ? 'formButtonActive' : 'formButton'
+                                !offer && offer !== null ? 'active' : ''
                             }
                             type='button'
                             id='offer'
@@ -378,10 +375,10 @@ export const EditListing = () => {
                         </button>
                     </div>
 
-                    <label className='formLabel'>Regular Price</label>
-                    <div className='formPriceDiv'>
+                    <label>Regular Price</label>
+                    <div className='price-container'>
                         <input
-                            className='formInputSmall'
+                            className='small-input'
                             type='number'
                             id='regularPrice'
                             value={regularPrice}
@@ -390,14 +387,14 @@ export const EditListing = () => {
                             max='750000000'
                             required
                         />
-                        {type === 'rent' && <p className='formPriceText'>$ / Month</p>}
+                        {type === 'rent' && <p>$ / Month</p>}
                     </div>
 
                     {offer && (
                         <>
-                            <label className='formLabel'>Discounted Price</label>
+                            <label>Discounted Price</label>
                             <input
-                                className='formInputSmall'
+                                className='small-input'
                                 type='number'
                                 id='discountedPrice'
                                 value={discountedPrice}
@@ -409,12 +406,11 @@ export const EditListing = () => {
                         </>
                     )}
 
-                    <label className='formLabel'>Images</label>
-                    <p className='imagesInfo'>
+                    <label>Images</label>
+                    <p className='upload-info'>
                         The first image will be the cover (max 6).
                     </p>
                     <input
-                        className='formInputFile'
                         type='file'
                         id='images'
                         onChange={onMutate}
@@ -423,7 +419,7 @@ export const EditListing = () => {
                         multiple
                         required
                     />
-                    <button type='submit' className='primaryButton createListingButton'>
+                    <button type='submit' className='btn-primary createListingButton'>
                         Save
                     </button>
                 </form>

@@ -1,0 +1,98 @@
+.edit-listing {
+    margin-bottom: 10rem;
+
+    form {
+        label {
+            font-weight: 600;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .address-input,
+        .listing-name-input,
+        .small-input,
+        input[type="file"],
+        button[type="button"] {
+            padding: 0.9rem 3rem;
+            background-color: #ffffff;
+            font-weight: 600;
+            border-radius: 1rem;
+            font-size: 1rem;
+            margin: 0.5rem 0.5rem 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button[type="button"].active {
+            background-color: #00cc66;
+            color: #ffffff;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .address-input,
+        .listing-name-input,
+        .small-input,
+        input[type="file"] {
+            border: none;
+            outline: none;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .small-input,
+        input[type="file"] {
+            margin-right: 3rem;
+            padding: 0.9rem 0.7rem;
+            text-align: center;
+        }
+
+        .listing-name-input {
+            padding: 0.9rem 1rem;
+            width: 90%;
+            max-width: 326px;
+        }
+
+        .address-input {
+            padding: 0.9rem 1rem;
+            width: 90%;
+            max-width: 326px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin-left: -1.5rem;
+                font-weight: 600;
+            }
+        }
+
+        .upload-info {
+            font-size: 0.9rem;
+            opacity: 0.75;
+        }
+
+        input[type="file"] {
+            width: 100%;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            background-color: #00cc66;
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.5rem 0.75rem;
+            border-radius: 1rem;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            margin-top: 5rem;
+        }
+    }
+}

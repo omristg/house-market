@@ -51,7 +51,38 @@
                 font-weight: 500;
                 font-size: 0.7rem;
             }
+            @media (min-width: 500px) {
+                .text {
+                    font-weight: unset;
+                    font-size: unset;
+                }
+            }
         }
+    }
+
+    .removeIcon,
+    .editIcon {
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        transition: 0.1s;
+    }
+
+    &:hover {
+        .removeIcon,
+        .editIcon {
+            opacity: 1;
+        }
+    }
+
+    .removeIcon {
+        top: -3%;
+        right: -2%;
+    }
+
+    .editIcon {
+        top: -3.4%;
+        right: 20px;
     }
 
     @media (min-width: 1024px) {

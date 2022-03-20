@@ -70,34 +70,34 @@ export const ListingDetails = () => {
                 ))}
             </Swiper>
 
-            <div className="shareIconDiv" onClick={handleShare}>
+            <div className="share-icon-container" onClick={handleShare}>
                 <img src={shareIcon} alt="share icon" />
             </div>
 
             {
                 shareLinkCopied && (
-                    <p className="linkCopied">Link copied!</p>
+                    <p className="link-copied">Link copied!</p>
                 )
             }
 
-            <div className="listingDetails">
-                <p className="listingName">
+            <div className="listing-details">
+                <p className="name">
                     {name} - {offer ?
                         listingService.formattedPrice(discountedPrice)
                         :
                         listingService.formattedPrice(regularPrice)
                     }
                 </p>
-                <p className="listingLocation">{location}</p>
-                <p className="listingType">
+                <p className="location">{location}</p>
+                <p className="type">
                     For {type === 'rent' ? 'rent' : 'sale'}
                 </p>
                 {offer && (
-                    <p className="discountPrice">
+                    <p className="price">
                         {listingService.formattedPrice(regularPrice - discountedPrice)} discount
                     </p>
                 )}
-                <ul className="listingDetailsList">
+                <ul className="info-list">
                     <li >
                         {bedrooms > 1 ? `${bedrooms} Bedrooms` : '1 Bedroom'}
                     </li>
@@ -108,9 +108,9 @@ export const ListingDetails = () => {
                     {furnished && <li>Furnished</li>}
 
                 </ul>
-                <p className="listingLocationTitle">Location</p>
+                <p className="location-title">Location</p>
 
-                <div className="leafletContainer">
+                <div className="map-container">
                     <MapContainer
                         style={{ width: '100%', height: '100%' }}
                         center={geolocation}
@@ -130,7 +130,7 @@ export const ListingDetails = () => {
                 </div>
 
                 {auth.currentUser?.uid !== userRef && (
-                    <Link className='primaryButton'
+                    <Link className='btn-primary'
                         to={`/contact/${userRef}?listingName=${name}`}
                     >
                         Contact landlord

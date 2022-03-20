@@ -25,6 +25,21 @@ button {
     border: none;
 }
 
+.btn-primary {
+    cursor: pointer;
+    background: var(--primary-clr);
+    border-radius: 1rem;
+    padding: 0.85rem 2rem;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.25rem;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .input,
 .password-input,
 .email-input,
@@ -56,7 +71,8 @@ button {
 .page-container,
 .offers,
 .profile,
-.listingDetails,
+.edit-listing,
+.listing-details,
 .listing-list,
 .explore {
     margin: 1rem;
@@ -66,7 +82,8 @@ button {
     .page-container,
     .offers,
     .profile,
-    .listingDetails,
+    .edit-listing,
+    .listing-details,
     .listing-list,
     .explore {
         margin: 3rem;

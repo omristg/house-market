@@ -1,0 +1,24 @@
+.contact {
+    header {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .landlord-name {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .message-container {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 4rem;
+
+        label {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

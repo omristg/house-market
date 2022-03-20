@@ -1,0 +1,30 @@
+.progress-bar {
+	.backgroud {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+		height: 40px;
+		box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+		z-index: 5000;
+		background-color: #f2f4f8;
+		border-radius: 20px;
+	}
+
+	.progress {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 40px;
+		background-color: #00cc66;
+		transition: all 2s ease-in-out;
+		border-top-left-radius: 20px;
+		border-bottom-left-radius: 20px;
+		padding: 0 1rem;
+
+		&[data-finished="true"] {
+			border-radius: 20px;
+		}
+	}
+}

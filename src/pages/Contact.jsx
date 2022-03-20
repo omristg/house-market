@@ -27,15 +27,15 @@ export const Contact = () => {
             </header>
 
             {landlord && (
-                <main>
+                <main className="contact">
 
-                    <div className="contactLandlord">
-                        <p className="landlordName">Contact {landlord.name}</p>
-                    </div>
+                    <header>
+                        <p className="landlord-name">Contact {landlord.name}</p>
+                    </header>
 
-                    <form className="messageForm">
-                        <div className="messageDiv">
-                            <label htmlFor="message" className="messageLabel">
+                    <form>
+                        <div className="message-container">
+                            <label htmlFor="message">
                                 Message
                             </label>
                             <textarea
@@ -49,7 +49,7 @@ export const Contact = () => {
                         <a href={`mailto:${landlord.email}
                             ?Subject=${searchParams.get('listingName')}
                             &body=${message}`}>
-                            <button type="button" className="primaryButton">
+                            <button type="button" className="btn-primary">
                                 Send Message
                             </button>
                         </a>
